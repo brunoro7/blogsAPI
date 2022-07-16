@@ -4,10 +4,10 @@ const atributtes = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: Sequelize.INTEGER
+    type: DataTypes.INTEGER
   },
   name: {
-    type: Sequelize.STRING
+    type: DataTypes.STRING
   },
   // createdAt: {
   //   allowNull: false,
