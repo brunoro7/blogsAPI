@@ -1,6 +1,32 @@
 const userModel = require('../database/models');
 
 const userService = {  
+  async validateUserToken(authorization) {
+    if (!authorization) {
+      const error = new Error('Token not found');
+      error.name = 'tokenNotFound';
+      throw error;
+    }
+  },
+
+  // async checkToken(userData) {
+  //   const { email } = userData;
+  //   const result = await userModel.User.findOne({
+  //     where: { email },
+  //     raw: true,
+  //   });
+
+  //   console.log('userService retorna obj', result);
+  //   console.log('userService', result.email, userData.email);
+
+  //   if (!result || result.email !== userData.email) {
+  //     const error = new Error('Expired or invalid token');
+  //     error.name = 'invalidToken';
+  //     throw error;
+  //   }
+  //   return userData;
+  // },
+
   async addUser(dataUser) {
     const newUser = await userModel.User.create(dataUser);
 
@@ -86,7 +112,7 @@ const userService = {
       throw error;
     }
     const user = userById.toJSON();
-
+    
     return user;
   },
 

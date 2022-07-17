@@ -1,14 +1,13 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+// const userModel = require('../database/models');
 
 const jwtService = {
   async createToken(user) {
     const { password: _, ...userNoPass } = user;
 
-    console.log('retirando password', userNoPass);
-
     const token = jwt.sign({ data: userNoPass }, process.env.JWT_SECRET, {
-      expiresIn: '15d',
+      // expiresIn: '15d',
       algorithm: 'HS256',
     });
 
@@ -16,21 +15,14 @@ const jwtService = {
   },
   
   async validateToken(token) {
-    if (!token) {
-      const error = new Error('Token not found');
-      error.name = 'tokenNotFound';
-      throw error;
-    }
-
-    const { data } = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!data) {
+    try {
+      const { data } = jwt.verify(token, process.env.JWT_SECRET);
+      return data;    
+    } catch (_error) {
       const error = new Error('Expired or invalid token');
       error.name = 'invalidToken';
       throw error;
     }
-
-    return data;
   },
 };
 
