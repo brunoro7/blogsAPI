@@ -20,14 +20,6 @@ const atributtes = {
   image: {
     type: DataTypes.STRING
   },
-  // createdAt: {
-  //   allowNull: false,
-  //   type: DataTypes.DATE
-  // },
-  // updatedAt: {
-  //   allowNull: false,
-  //   type: DataTypes.DATE
-  // }
 };
 
 module.exports = (sequelize) => {
@@ -38,5 +30,10 @@ module.exports = (sequelize) => {
     tableName: 'Users',
     timestamps: false
   });
+  model.associate = (models) => {
+    model.hasMany(models.BlogPost, {
+      foreingKey: 'userId',
+    })
+  }
   return model;
 };

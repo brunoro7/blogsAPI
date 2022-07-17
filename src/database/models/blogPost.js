@@ -14,20 +14,15 @@ const atributtes = {
   },
   userId: {
     type: DataTypes.INTEGER,
-    references: {
-      model: 'Users',
-      key: 'id'
-    }
+    foreingKey: true,
   },
-  createdAt: {
+  published: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'published'
   },
-  updatedAt: {
+  updated: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'updated'
   }
 };
 
@@ -36,9 +31,14 @@ module.exports = (sequelize) => {
  * @param {import('sequelize').Sequelize} sequelize
 */
 
-const model = sequelize.define('BlogPosts', atributtes, {
+  const model = sequelize.define('BlogPost', atributtes, {
   tableName: 'BlogPosts',
   timestamps: false
-});
-return model;
+  });
+  model.associate = (models) => {
+    model.belongsTo(models.User, {
+      foreingKey: 'userId',
+    })
+  }
+  return model;
 };
