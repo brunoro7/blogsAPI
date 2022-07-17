@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
  * @param {import('sequelize').Sequelize} sequelize
 */
 
-  const model = sequelize.define('Categories', atributtes, {
+  const model = sequelize.define('Category', atributtes, {
     tableName: 'Categories',
     timestamps: false
   });
