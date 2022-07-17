@@ -1,14 +1,6 @@
 const userModel = require('../database/models');
 
 const userService = {  
-  async validateUserToken(authorization) {
-    if (!authorization) {
-      const error = new Error('Token not found');
-      error.name = 'tokenNotFound';
-      throw error;
-    }
-  },
-
   async addUser(dataUser) {
     const newUser = await userModel.User.create(dataUser);
 

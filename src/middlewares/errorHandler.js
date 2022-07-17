@@ -1,11 +1,13 @@
 const errors = {
-  missingField: 400,
   invalidField: 400,
+  missingField: 400,
   nameLength: 400,
+  nameIsRequired: 400,
   passLength: 400,
+  invalidId: 401,
   invalidToken: 401,
   tokenNotFound: 401,
-  invalidId: 401,
+  unknownCategory: 404,
   unknownUser: 404,
   duplicatedEmail: 409,
 };

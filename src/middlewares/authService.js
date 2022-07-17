@@ -24,6 +24,13 @@ const jwtService = {
       throw error;
     }
   },
+  async verifyToken(authorization) {
+    if (!authorization) {
+      const error = new Error('Token not found');
+      error.name = 'tokenNotFound';
+      throw error;
+    }
+  },
 };
 
 module.exports = jwtService;
