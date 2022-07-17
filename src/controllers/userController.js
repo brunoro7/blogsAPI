@@ -18,6 +18,11 @@ const userController = {
   async getUserById(req, res) {
     const id = await userService.validateParamsId(req.params.id);
     const user = await userService.getUserById(id);
+
+    const token = req.headers.authorization;
+    await userService.validateUserToken(token);
+    
+    await authService.validateToken(token);
     
     res.status(200).json(user);
   },
