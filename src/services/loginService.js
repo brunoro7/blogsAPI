@@ -1,6 +1,3 @@
-// const { user } = require('../database/models/user');
-// const jwtService = require('../middlewares/authService');
-
 const loginService = {
   async validateFields(objValue) {
     const { email, password } = objValue;

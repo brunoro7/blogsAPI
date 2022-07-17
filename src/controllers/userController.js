@@ -1,4 +1,5 @@
 const userService = require('../services/userService');
+const authService = require('../middlewares/authService');
 
 const userController = {  
   /** @type {import('express').RequestHandler} */
@@ -9,9 +10,23 @@ const userController = {
   },
 
   async getUserById(req, res) {
-    const result = await userService.getUserById(req.params.id);
+    const id = await userService.validateParamsId(req.params.id);
+    const user = await userService.getUserById(id);
     
-    res.status(200).json(result);
+    res.status(200).json(user);
+  },
+
+  async addUser(req, res) {
+    const { displayName, password } = await userService.validateNameAndPassAdd(req.body);
+    const { email } = await userService.validateEmailAdd(req.body);
+    const { image } = req.body;
+    const dataUser = { displayName, email, password, image };
+
+    const validBodyAdd = await userService.validateObjBodyAdd(dataUser);
+    const createdUser = await userService.addUser(validBodyAdd);
+    const token = await authService.createToken(createdUser.dataValues);
+    
+    res.status(201).json({ token });
   },
 };
 
