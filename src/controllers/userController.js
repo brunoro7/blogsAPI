@@ -4,13 +4,6 @@ const authService = require('../middlewares/authService');
 const userController = {  
   /** @type {import('express').RequestHandler} */
   async getUserList(req, res) {
-    const token = req.headers.authorization;
-    await userService.validateUserToken(token);
-    
-    await authService.validateToken(token);
-
-    // await userService.checkToken(userData);
-
     const resultList = await userService.getUserList();
     res.status(200).json(resultList);
   },
@@ -18,11 +11,6 @@ const userController = {
   async getUserById(req, res) {
     const id = await userService.validateParamsId(req.params.id);
     const user = await userService.getUserById(id);
-
-    const token = req.headers.authorization;
-    await userService.validateUserToken(token);
-    
-    await authService.validateToken(token);
     
     res.status(200).json(user);
   },

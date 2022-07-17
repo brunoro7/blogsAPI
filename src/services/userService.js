@@ -9,24 +9,6 @@ const userService = {
     }
   },
 
-  // async checkToken(userData) {
-  //   const { email } = userData;
-  //   const result = await userModel.User.findOne({
-  //     where: { email },
-  //     raw: true,
-  //   });
-
-  //   console.log('userService retorna obj', result);
-  //   console.log('userService', result.email, userData.email);
-
-  //   if (!result || result.email !== userData.email) {
-  //     const error = new Error('Expired or invalid token');
-  //     error.name = 'invalidToken';
-  //     throw error;
-  //   }
-  //   return userData;
-  // },
-
   async addUser(dataUser) {
     const newUser = await userModel.User.create(dataUser);
 
