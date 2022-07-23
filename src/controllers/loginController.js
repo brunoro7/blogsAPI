@@ -1,5 +1,5 @@
-const loginService = require('../services/loginService');
 const authService = require('../middlewares/authService');
+const loginService = require('../services/loginService');
 const userService = require('../services/userService');
 
 const loginController = {

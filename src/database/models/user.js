@@ -28,11 +28,12 @@ module.exports = (sequelize) => {
 */
   const model = sequelize.define('User', atributtes, {
     tableName: 'Users',
-    timestamps: false
+    timestamps: false,
   });
   model.associate = (models) => {
     model.hasMany(models.BlogPost, {
       foreingKey: 'userId',
+      // as: 'posts',
     })
   }
   return model;

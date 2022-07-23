@@ -9,14 +9,6 @@ const atributtes = {
   name: {
     type: DataTypes.STRING
   },
-  // createdAt: {
-  //   allowNull: false,
-  //   type: Sequelize.DATE
-  // },
-  // updatedAt: {
-  //   allowNull: false,
-  //   type: Sequelize.DATE
-  // }
 };
 
 module.exports = (sequelize) => {
@@ -26,7 +18,7 @@ module.exports = (sequelize) => {
 
   const model = sequelize.define('Category', atributtes, {
     tableName: 'Categories',
-    timestamps: false
+    timestamps: false,
   });
   return model;
 };

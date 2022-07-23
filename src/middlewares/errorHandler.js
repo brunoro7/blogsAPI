@@ -1,6 +1,8 @@
 const errors = {
+  categoryNotFound: 400,
   invalidField: 400,
   missingField: 400,
+  missingFieldBodyPost: 400,
   nameLength: 400,
   nameIsRequired: 400,
   passLength: 400,

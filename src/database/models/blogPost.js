@@ -33,11 +33,12 @@ module.exports = (sequelize) => {
 
   const model = sequelize.define('BlogPost', atributtes, {
   tableName: 'BlogPosts',
-  timestamps: false
+  timestamps: false,
   });
   model.associate = (models) => {
     model.belongsTo(models.User, {
       foreingKey: 'userId',
+      as: 'user',
     })
   }
   return model;

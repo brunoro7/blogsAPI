@@ -8,8 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 
 // tipando os models do sequelize
-/** @type {Record<string, Sequelize.Model} */
-
+/** @type {Record<string, Sequelize.ModelStatic<Sequelize.Model>>>} */
 const db = {};
 
 let sequelize;
